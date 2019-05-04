@@ -1,16 +1,22 @@
 #include <SFML/Graphics.hpp>
 
+#include "Button.h"
+
 #include <iostream>
 
-static int window_height{ 500 };
+static int window_height{ 550 };
 static int window_width{ 500 };
+
+static int drawing_panel_width{ 500 };
+static int drawing_panel_height{ 500 };
+
 static int graphicPixelSize{ 10 };
-
-
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(window_width, window_height), "Drawer");
+
+	Button buttonTest{ 0, 500 };
 
 	std::vector<sf::RectangleShape> shapes;
 
@@ -18,9 +24,9 @@ int main()
 	bool canPress{ true };
 	sf::Mouse mouse{};
 
-	for (int y = 0; y < window_height; y += 10)
+	for (int y = 0; y < drawing_panel_height; y += 10)
 	{
-		for (int x = 0; x < window_width; x += 10)
+		for (int x = 0; x < drawing_panel_width; x += 10)
 		{
 			sf::RectangleShape shape{ sf::Vector2f(float(graphicPixelSize), float(graphicPixelSize)) };
 			shape.setPosition(sf::Vector2f((float)x, (float)y));
@@ -34,13 +40,13 @@ int main()
 
 	while (window.isOpen())
 	{
+		sf::Vector2i mousePosition{ mouse.getPosition(window) };
+
 		if (mouse.isButtonPressed(sf::Mouse::Left))
 		{
-			sf::Vector2i mousePosition{ mouse.getPosition(window) };
-
 			if (mousePosition.x >= 0 && mousePosition.y >= 0)
 			{
-				if (mousePosition.x < window_width && mousePosition.y < window_height)
+				if (mousePosition.x < drawing_panel_width && mousePosition.y < drawing_panel_height)
 				{
 					mousePosition /= graphicPixelSize;
 
@@ -52,11 +58,10 @@ int main()
 		if (mouse.isButtonPressed(sf::Mouse::Right) && canPress)
 		{
 			canPress = false;
-			sf::Vector2i mousePosition{ mouse.getPosition(window) };
 
 			if (mousePosition.x >= 0 && mousePosition.y >= 0)
 			{
-				if (mousePosition.x < window_width && mousePosition.y < window_height)
+				if (mousePosition.x < drawing_panel_width && mousePosition.y < drawing_panel_height)
 				{
 					mousePosition /= graphicPixelSize;
 
@@ -99,6 +104,7 @@ int main()
 
 
 		window.clear();
+		window.draw(buttonTest.getShape());
 		for (sf::RectangleShape shape : shapes)
 		{
 			window.draw(shape);
