@@ -17,6 +17,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(window_width, window_height), "Drawer");
 
 	Button buttonTest{ 0, 500 };
+	Button buttonTest1{ 50, 500 };
 
 	std::vector<sf::RectangleShape> shapes;
 
@@ -89,22 +90,35 @@ int main()
 			}
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (buttonTest.isMouseOnButton(mousePosition) && mouse.isButtonPressed(sf::Mouse::Left) && canPress)
 		{
-			canPress = true;
+			canPress = false;
+			std::cout << "button clicked" << std::endl;
 		}
 
-
+		if (buttonTest1.isMouseOnButton(mousePosition) && mouse.isButtonPressed(sf::Mouse::Left) && canPress)
+		{
+			canPress = false;
+			std::cout << "button1 clicked" << std::endl;
+		}
+		
 		sf::Event event;
+		
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+			if (event.type == sf::Event::MouseButtonReleased)
+			{
+				canPress = true;
+			}
 		}
 
 
 		window.clear();
 		window.draw(buttonTest.getShape());
+		window.draw(buttonTest1.getShape());
 		for (sf::RectangleShape shape : shapes)
 		{
 			window.draw(shape);
