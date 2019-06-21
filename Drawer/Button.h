@@ -7,34 +7,25 @@
 class Button
 {
 private:
-	sf::RectangleShape shape{};
+	sf::Sprite sprite{};
+	sf::Texture texture{};
 	float buttonSize{ 50 };
+
 public:
-	Button(int x, int y) 
-	{
-		shape.setPosition(float(x), float(y));
-		shape.setSize(sf::Vector2f(buttonSize, buttonSize));
-
-
-		sf::Texture texture{};
-		texture.create(50, 50);
-		if (!texture.loadFromFile("iconTest.png"))
-		{
-			std::cout << "texture problem" << std::endl;
-		}
-		shape.setTextureRect(sf::IntRect(0, 0, 50, 50));
-		shape.setTexture(&texture);
-		
-		
+	Button(std::string fileName, int x, int y)
+	{		
+		texture.loadFromFile(fileName, sf::IntRect(0, 0, buttonSize, buttonSize));
+		sprite.setTexture(texture);
+		sprite.setPosition(float(x), float(y));
 	}
 
 	void onClick(){}
 
 	bool isMouseOnButton(sf::Vector2i mousePosition)
 	{
-		if (mousePosition.x >= shape.getPosition().x && mousePosition.x <= (shape.getPosition().x + buttonSize))
+		if (mousePosition.x >= sprite.getPosition().x && mousePosition.x <= (sprite.getPosition().x + buttonSize))
 		{
-			if (mousePosition.y >= shape.getPosition().y && mousePosition.y <= (shape.getPosition().y + buttonSize))
+			if (mousePosition.y >= sprite.getPosition().y && mousePosition.y <= (sprite.getPosition().y + buttonSize))
 			{
 				return true;
 			}
@@ -42,9 +33,9 @@ public:
 		return false;
 	}
 
-	sf::RectangleShape getShape()
+	sf::Sprite getSprite()
 	{
-		return shape;
+		return sprite;
 	}
 
 	~Button() {}

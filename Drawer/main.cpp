@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "Button.h"
+#include "Brush.h"
+#include "NullBrush.h"
+#include "BrushFactory.h"
 
 #include <iostream>
 
@@ -15,9 +18,12 @@ static int graphicPixelSize{ 10 };
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(window_width, window_height), "Drawer");
+	
+	std::unique_ptr<Brush> actualBrush{std::make_unique<NullBrush>(NullBrush())};
+	const BrushFactory & brushFactory{};
 
-	Button buttonTest{ 0, 500 };
-	Button buttonTest1{ 50, 500 };
+	Button buttonTest{"PenImage.png", 0, 500 };
+	Button buttonTest1{"RubberImage.png", 50, 500 };
 
 	std::vector<sf::RectangleShape> shapes;
 
@@ -51,11 +57,13 @@ int main()
 				{
 					mousePosition /= graphicPixelSize;
 
-					shapes[(50 * mousePosition.y) + mousePosition.x].setFillColor(sf::Color::Red);
+					actualBrush->draw(shapes[(50 * mousePosition.y) + mousePosition.x]);
 				}
 			}		
 		}
 
+
+		//parabola
 		if (mouse.isButtonPressed(sf::Mouse::Right) && canPress)
 		{
 			canPress = false;
@@ -93,13 +101,15 @@ int main()
 		if (buttonTest.isMouseOnButton(mousePosition) && mouse.isButtonPressed(sf::Mouse::Left) && canPress)
 		{
 			canPress = false;
-			std::cout << "button clicked" << std::endl;
+			std::cout << "PEN" << std::endl;
+			actualBrush = brushFactory.create(BrushFactory::BrushStrategy::Pen);
 		}
 
 		if (buttonTest1.isMouseOnButton(mousePosition) && mouse.isButtonPressed(sf::Mouse::Left) && canPress)
 		{
 			canPress = false;
-			std::cout << "button1 clicked" << std::endl;
+			std::cout << "RUBBER" << std::endl;
+			actualBrush = brushFactory.create(BrushFactory::BrushStrategy::Rubber);			
 		}
 		
 		sf::Event event;
@@ -117,12 +127,14 @@ int main()
 
 
 		window.clear();
-		window.draw(buttonTest.getShape());
-		window.draw(buttonTest1.getShape());
+
+		window.draw(buttonTest.getSprite());
+		window.draw(buttonTest1.getSprite());
 		for (sf::RectangleShape shape : shapes)
 		{
 			window.draw(shape);
 		}
+		
 		window.display();
 	}
 

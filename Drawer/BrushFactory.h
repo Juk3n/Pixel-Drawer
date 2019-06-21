@@ -10,6 +10,7 @@ public:
 	enum class BrushStrategy
 	{
 		Pen,
+		Rubber,
 		Parabola,
 		NullBrush
 	};
