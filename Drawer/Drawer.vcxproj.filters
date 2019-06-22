@@ -18,42 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BrushFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Parabola.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NullBrush.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rubber.cpp">
+    <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BrushFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Brush.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Pen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Parabola.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NullBrush.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rubber.h">
+    <ClInclude Include="Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

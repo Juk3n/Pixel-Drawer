@@ -123,21 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BrushFactory.cpp" />
+    <ClCompile Include="Application.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="NullBrush.cpp" />
-    <ClCompile Include="Parabola.cpp" />
-    <ClCompile Include="Pen.cpp" />
-    <ClCompile Include="Rubber.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Brush.h" />
-    <ClInclude Include="BrushFactory.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="NullBrush.h" />
-    <ClInclude Include="Parabola.h" />
-    <ClInclude Include="Pen.h" />
-    <ClInclude Include="Rubber.h" />
+    <ClInclude Include="Application.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
