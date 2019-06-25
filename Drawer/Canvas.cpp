@@ -10,7 +10,7 @@ void Canvas::fillLine(int y)
 	}
 }
 
-bool Canvas::isMouseOnDrawingPanel(sf::Vector2i mousePosition)
+bool Canvas::isMouseOnCanvas(sf::Vector2i mousePosition)
 {
 	return (mousePosition.x < canvasWidth && mousePosition.y < canvasHeight && mousePosition.x >= 0 && mousePosition.y >= 0);
 }
@@ -23,9 +23,9 @@ Canvas::Canvas(int width, int height) : canvasWidth(width), canvasHeight(height)
 	}
 }
 
-void Canvas::drawPixel(int x, int y)
+void Canvas::drawPixel(int x, int y, sf::Color color)
 {
-	Pixels[y * canvasWidth / pixelSize + x].setFillColor(sf::Color::Black);
+	Pixels[y * canvasWidth / pixelSize + x].setFillColor(color);
 }
 
 void Canvas::drawLine(int x1, int y1, int x2, int y2)
@@ -39,7 +39,7 @@ void Canvas::drawLine(int x1, int y1, int x2, int y2)
 	{
 		int x = (accuracy - t)*x1 + t*x2;
 		int y = (accuracy - t)*y1 + t*y2;
-		drawPixel(x / accuracy / accuracy, y / accuracy / accuracy);
+		drawPixel(x / accuracy / accuracy, y / accuracy / accuracy, sf::Color::Black);
 	}
 }
 

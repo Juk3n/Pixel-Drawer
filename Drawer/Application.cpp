@@ -10,40 +10,49 @@ void Application::run()
 	
 	Canvas canvas{ 500, 500 };
 
+	UserMouse mouse{};
+
 	Button buttonPen{ "Images//PenImage.png", 0, 500 };
 	Button buttonRubber{ "Images//RubberImage.png", 50, 500 };
 	Button buttonLine{ "Images//LineImage.png", 100, 500 };
 
-	bool canPress{ true };
-	sf::Mouse mouse{};
+	bool canPress{};
 
 	while (window.isOpen())
 	{
-		sf::Vector2i mousePosition{ mouse.getPosition(window) };
-		
-		bool isMouseClicked{ mouse.isButtonPressed(sf::Mouse::Button::Left) };
+		mouse.refreshMouse(window);
 
-		if (isMouseClicked)
+		sf::Vector2i pixelPosition{ mouse.getPosition() / 10 };
+
+		if (mouse.isLeftButtonClicked() && canPress && canvas.isMouseOnCanvas(mouse.getPosition()))
 		{
-			//canvas.drawPixel(mousePosition.x / 10, mousePosition.y / 10);
+			actualBrush->startDrawing(canvas, pixelPosition);
+			canPress = false;
 		}
 
-		if (buttonPen.isPressed(isMouseClicked, mousePosition) && canPress)
+		if (mouse.isLeftButtonClicked() && mouse.isDragging() && canvas.isMouseOnCanvas(mouse.getPosition()))
 		{
-			canPress = false;
-			std::cout << "pen";
+			actualBrush->dragDrawing(canvas, pixelPosition);
 		}
 
-		if (buttonRubber.isPressed(isMouseClicked, mousePosition) && canPress)
+		if (buttonPen.isPressed(mouse.isLeftButtonClicked(), mouse.getPosition()) && canPress)
 		{
+			actualBrush = factory.create(BrushFactory::BrushStrategy::Pen);
+			std::cout << "PEN" << std::endl;
 			canPress = false;
-			std::cout << "rubber";
 		}
 
-		if (buttonLine.isPressed(isMouseClicked, mousePosition) && canPress)
+		if (buttonRubber.isPressed(mouse.isLeftButtonClicked(), mouse.getPosition()) && canPress)
 		{
+			actualBrush = factory.create(BrushFactory::BrushStrategy::Rubber);
 			canPress = false;
-			std::cout << "line";
+		}
+
+		if (buttonLine.isPressed(mouse.isLeftButtonClicked(), mouse.getPosition()) && canPress)
+		{
+			actualBrush = factory.create(BrushFactory::BrushStrategy::Line);
+			std::cout << "LINE" << std::endl;
+			canPress = false;
 		}
 
 		sf::Event event;
@@ -54,6 +63,11 @@ void Application::run()
 
 			if (event.type == sf::Event::MouseButtonReleased)
 			{
+				if (canvas.isMouseOnCanvas(mouse.getPosition()))
+				{
+					actualBrush->endDrawing(canvas, pixelPosition);
+				}
+				
 				canPress = true;
 			}
 		}
