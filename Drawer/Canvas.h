@@ -20,7 +20,7 @@ public:
 	bool isMouseOnCanvas(sf::Vector2i mousePosition);
 
 	void drawPixel(int x, int y, sf::Color color);
-	void drawLine(int x1, int y1, int x2, int y2);
+	void drawLine(int x1, int y1, int x2, int y2, sf::Color color);
 
 	std::vector<sf::RectangleShape> getPixels();
 };

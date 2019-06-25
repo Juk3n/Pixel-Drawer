@@ -1,5 +1,10 @@
 #include "Application.h"
 
+bool Application::isPressed(Button & button)
+{
+	return (button.isPressed(mouse.isLeftButtonClicked(), mouse.getPosition()) && canPress);
+}
+
 Application::Application(std::string title, int height, int width) : window_Title(title), window_height(height), window_width(width)
 { 
 }
@@ -8,16 +13,6 @@ void Application::run()
 {
 	sf::RenderWindow window(sf::VideoMode(window_width, window_height), window_Title);
 	
-	Canvas canvas{ 500, 500 };
-
-	UserMouse mouse{};
-
-	Button buttonPen{ "Images//PenImage.png", 0, 500 };
-	Button buttonRubber{ "Images//RubberImage.png", 50, 500 };
-	Button buttonLine{ "Images//LineImage.png", 100, 500 };
-
-	bool canPress{};
-
 	while (window.isOpen())
 	{
 		mouse.refreshMouse(window);
@@ -35,23 +30,21 @@ void Application::run()
 			actualBrush->dragDrawing(canvas, pixelPosition);
 		}
 
-		if (buttonPen.isPressed(mouse.isLeftButtonClicked(), mouse.getPosition()) && canPress)
+		if (isPressed(buttonPen))
 		{
 			actualBrush = factory.create(BrushFactory::BrushStrategy::Pen);
-			std::cout << "PEN" << std::endl;
 			canPress = false;
 		}
 
-		if (buttonRubber.isPressed(mouse.isLeftButtonClicked(), mouse.getPosition()) && canPress)
+		if (isPressed(buttonRubber))
 		{
 			actualBrush = factory.create(BrushFactory::BrushStrategy::Rubber);
 			canPress = false;
 		}
 
-		if (buttonLine.isPressed(mouse.isLeftButtonClicked(), mouse.getPosition()) && canPress)
+		if (isPressed(buttonLine))
 		{
 			actualBrush = factory.create(BrushFactory::BrushStrategy::Line);
-			std::cout << "LINE" << std::endl;
 			canPress = false;
 		}
 
@@ -78,7 +71,6 @@ void Application::run()
 		window.draw(buttonPen.getSprite());
 		window.draw(buttonRubber.getSprite());
 		window.draw(buttonLine.getSprite());
-		
 		
 		window.display();
 	}

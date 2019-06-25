@@ -28,18 +28,18 @@ void Canvas::drawPixel(int x, int y, sf::Color color)
 	Pixels[y * canvasWidth / pixelSize + x].setFillColor(color);
 }
 
-void Canvas::drawLine(int x1, int y1, int x2, int y2)
+void Canvas::drawLine(int x1, int y1, int x2, int y2, sf::Color color)
 {
 	int accuracy{ 100 };
 	x1 *= accuracy;
 	x2 *= accuracy;
 	y1 *= accuracy;
 	y2 *= accuracy;
-	for (int t = 1; t < accuracy; t++)
+	for (int t = 1; t <= accuracy; t++)
 	{
 		int x = (accuracy - t)*x1 + t*x2;
 		int y = (accuracy - t)*y1 + t*y2;
-		drawPixel(x / accuracy / accuracy, y / accuracy / accuracy, sf::Color::Black);
+		drawPixel(x / accuracy / accuracy, y / accuracy / accuracy, color);
 	}
 }
 
