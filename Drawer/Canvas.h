@@ -12,10 +12,10 @@ class Canvas
 	std::vector<sf::RectangleShape> Pixels{};
 	int pixelSize{10};
 
-	void fillLine(int y);
+	void fillLine(int y, sf::Color startColor);
 	
 public:
-	Canvas(int width, int height);
+	Canvas(int width, int height, sf::Color startColor);
 
 	bool isMouseOnCanvas(sf::Vector2i mousePosition);
 

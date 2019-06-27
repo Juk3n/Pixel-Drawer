@@ -48,6 +48,24 @@ void Application::run()
 			canPress = false;
 		}
 
+		if (isPressed(buttonRedDye))
+		{
+			actualBrush->setColor(sf::Color::Red);
+			canPress = false;
+		}
+
+		if (isPressed(buttonBlueDye))
+		{
+			actualBrush->setColor(sf::Color::Blue);
+			canPress = false;
+		}
+
+		if (isPressed(buttonBlackDye))
+		{
+			actualBrush->setColor(sf::Color::Black);
+			canPress = false;
+		}
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -66,11 +84,14 @@ void Application::run()
 		}
 
 		window.clear();
-
+		
 		for (auto pixel : canvas.getPixels()) window.draw(pixel);
 		window.draw(buttonPen.getSprite());
 		window.draw(buttonRubber.getSprite());
 		window.draw(buttonLine.getSprite());
+		window.draw(buttonRedDye.getSprite());
+		window.draw(buttonBlueDye.getSprite());
+		window.draw(buttonBlackDye.getSprite());
 		
 		window.display();
 	}

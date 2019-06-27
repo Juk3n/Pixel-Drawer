@@ -19,13 +19,17 @@ class Application
 	const BrushFactory & factory{};
 	std::unique_ptr<Brush> actualBrush{std::make_unique<Pen>(Pen())};
 
-	Canvas canvas{ 500, 500 };
+	Canvas canvas{ 500, 500, sf::Color::White };
 
 	UserMouse mouse{};
 
 	Button buttonPen{ "Images//PenImage.png", 0, 500 };
 	Button buttonRubber{ "Images//RubberImage.png", 50, 500 };
 	Button buttonLine{ "Images//LineImage.png", 100, 500 };
+	Button buttonRedDye{ "Images//RedDyeImage.png", 350, 500 };
+	Button buttonBlueDye{ "Images//BlueDyeImage.png", 400, 500 };
+	Button buttonBlackDye{ "Images//BlackDyeImage.png", 450, 500 };
+
 	bool canPress{};
 
 	bool isPressed(Button & button);

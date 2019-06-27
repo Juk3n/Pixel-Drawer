@@ -1,11 +1,12 @@
 #include "Canvas.h"
 
-void Canvas::fillLine(int y)
+void Canvas::fillLine(int y, sf::Color startColor)
 {
 	for (int x = 0; x < canvasWidth; x += pixelSize)
 	{
 		sf::RectangleShape pixel{ sf::Vector2f(pixelSize, pixelSize) };
 		pixel.setPosition(x, y);
+		pixel.setFillColor(startColor);
 		Pixels.push_back(pixel);
 	}
 }
@@ -15,11 +16,11 @@ bool Canvas::isMouseOnCanvas(sf::Vector2i mousePosition)
 	return (mousePosition.x < canvasWidth && mousePosition.y < canvasHeight && mousePosition.x >= 0 && mousePosition.y >= 0);
 }
 
-Canvas::Canvas(int width, int height) : canvasWidth(width), canvasHeight(height)
+Canvas::Canvas(int width, int height, sf::Color startColor) : canvasWidth(width), canvasHeight(height)
 {
 	for (int y = 0; y < canvasHeight; y+= pixelSize)
 	{
-		fillLine(y);		
+		fillLine(y, startColor);		
 	}
 }
 
