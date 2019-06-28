@@ -37,6 +37,11 @@ void Canvas::drawLine(int x1, int y1, int x2, int y2, sf::Color color)
 	}
 }
 
+void Canvas::setImage(sf::Image image)
+{
+	this->image = image;
+}
+
 sf::Image Canvas::getSaveImage()
 {
 	return image;

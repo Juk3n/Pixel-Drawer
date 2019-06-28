@@ -21,6 +21,8 @@ public:
 	void drawPixel(int x, int y, sf::Color color);
 	void drawLine(int x1, int y1, int x2, int y2, sf::Color color);
 
+	void setImage(sf::Image image);
+
 	sf::Image getSaveImage();
 	sf::Sprite getSprite();
 };

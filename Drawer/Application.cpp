@@ -58,6 +58,17 @@ void Application::run()
 			canPress = false;
 		}
 
+		if (isPressed(buttonLoad))
+		{
+			sf::Image image{};
+			if (image.loadFromFile("image.png"))
+			{
+				canvas.setImage(image);
+				canvas.drawPixel(0, 0, sf::Color::White);
+			}
+			canPress = false;
+		}
+
 		if (isPressed(buttonRedDye))
 		{
 			actualBrush->setColor(sf::Color::Red);
