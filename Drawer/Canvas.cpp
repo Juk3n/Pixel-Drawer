@@ -18,6 +18,7 @@ bool Canvas::isMouseOnCanvas(sf::Vector2i mousePosition)
 
 Canvas::Canvas(int width, int height, sf::Color startColor) : canvasWidth(width), canvasHeight(height)
 {
+	image.create(100, 100, sf::Color::White);
 	for (int y = 0; y < canvasHeight; y+= pixelSize)
 	{
 		fillLine(y, startColor);		
@@ -27,6 +28,10 @@ Canvas::Canvas(int width, int height, sf::Color startColor) : canvasWidth(width)
 void Canvas::drawPixel(int x, int y, sf::Color color)
 {
 	Pixels[y * canvasWidth / pixelSize + x].setFillColor(color);
+	image.setPixel(2*x, 2*y, color);
+	image.setPixel(2*x + 1, 2*y, color);
+	image.setPixel(2*x, 2*y + 1, color);
+	image.setPixel(2*x + 1, 2*y + 1, color);
 }
 
 void Canvas::drawLine(int x1, int y1, int x2, int y2, sf::Color color)
@@ -42,6 +47,11 @@ void Canvas::drawLine(int x1, int y1, int x2, int y2, sf::Color color)
 		int y = (accuracy - t)*y1 + t*y2;
 		drawPixel(x / accuracy / accuracy, y / accuracy / accuracy, color);
 	}
+}
+
+sf::Image Canvas::getSaveImage()
+{
+	return image;
 }
 
 std::vector<sf::RectangleShape> Canvas::getPixels()

@@ -24,8 +24,12 @@ class Application
 	UserMouse mouse{};
 
 	Button buttonPen{ "Images//PenImage.png", 0, 500 };
-	Button buttonRubber{ "Images//RubberImage.png", 50, 500 };
-	Button buttonLine{ "Images//LineImage.png", 100, 500 };
+	Button buttonThickPen{ "Images//ThickPenImage.png", 50, 500 };
+	Button buttonRubber{ "Images//RubberImage.png", 100, 500 };
+	Button buttonLine{ "Images//LineImage.png", 150, 500 };
+	Button buttonParabla{ "Images//ParabolaImage.png", 200, 500 };
+	Button buttonSave{ "Images//SaveImage.png", 250, 500 };
+	Button buttonLoad{ "Images//LoadImage.png", 300, 500 };
 	Button buttonRedDye{ "Images//RedDyeImage.png", 350, 500 };
 	Button buttonBlueDye{ "Images//BlueDyeImage.png", 400, 500 };
 	Button buttonBlackDye{ "Images//BlackDyeImage.png", 450, 500 };

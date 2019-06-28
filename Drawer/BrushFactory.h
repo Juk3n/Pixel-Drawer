@@ -6,6 +6,7 @@
 
 #include "Brush.h"
 #include "Pen.h"
+#include "ThickPen.h"
 #include "Line.h"
 #include "Rubber.h"
 
@@ -16,6 +17,7 @@ public:
 	{
 		NullBrush,
 		Pen,
+		ThickPen,
 		Rubber,
 		Line 
 	};

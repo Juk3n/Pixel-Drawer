@@ -12,6 +12,10 @@ std::unique_ptr<Brush> BrushFactory::create(BrushStrategy strategy) const
 		return std::move(std::make_unique<Pen>(Pen()));
 		break;
 
+	case BrushStrategy::ThickPen:
+		return std::move(std::make_unique<ThickPen>(ThickPen()));
+		break;
+
 	case BrushStrategy::Rubber:
 		return std::move(std::make_unique<Rubber>(Rubber()));
 		break;

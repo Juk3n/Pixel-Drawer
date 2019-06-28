@@ -130,6 +130,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pen.cpp" />
     <ClCompile Include="Rubber.cpp" />
+    <ClCompile Include="ThickPen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Pen.h" />
     <ClInclude Include="Rubber.h" />
+    <ClInclude Include="ThickPen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

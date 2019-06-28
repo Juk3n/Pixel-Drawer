@@ -36,6 +36,12 @@ void Application::run()
 			canPress = false;
 		}
 
+		if (isPressed(buttonThickPen))
+		{
+			actualBrush = factory.create(BrushFactory::BrushStrategy::ThickPen);
+			canPress = false;
+		}
+
 		if (isPressed(buttonRubber))
 		{
 			actualBrush = factory.create(BrushFactory::BrushStrategy::Rubber);
@@ -45,6 +51,12 @@ void Application::run()
 		if (isPressed(buttonLine))
 		{
 			actualBrush = factory.create(BrushFactory::BrushStrategy::Line);
+			canPress = false;
+		}
+
+		if (isPressed(buttonSave))
+		{
+			canvas.getSaveImage().saveToFile("image.png");
 			canPress = false;
 		}
 
@@ -87,8 +99,12 @@ void Application::run()
 		
 		for (auto pixel : canvas.getPixels()) window.draw(pixel);
 		window.draw(buttonPen.getSprite());
+		window.draw(buttonThickPen.getSprite());
 		window.draw(buttonRubber.getSprite());
 		window.draw(buttonLine.getSprite());
+		window.draw(buttonParabla.getSprite());
+		window.draw(buttonSave.getSprite());
+		window.draw(buttonLoad.getSprite());
 		window.draw(buttonRedDye.getSprite());
 		window.draw(buttonBlueDye.getSprite());
 		window.draw(buttonBlackDye.getSprite());
