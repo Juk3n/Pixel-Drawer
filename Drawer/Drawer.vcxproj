@@ -128,6 +128,7 @@
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parabola.cpp" />
     <ClCompile Include="Pen.cpp" />
     <ClCompile Include="Rubber.cpp" />
     <ClCompile Include="ThickPen.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Parabola.h" />
     <ClInclude Include="Pen.h" />
     <ClInclude Include="Rubber.h" />
     <ClInclude Include="ThickPen.h" />

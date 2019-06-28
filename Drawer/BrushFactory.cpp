@@ -8,6 +8,10 @@ std::unique_ptr<Brush> BrushFactory::create(BrushStrategy strategy) const
 		return std::move(std::make_unique<Line>(Line()));
 		break;
 
+	case BrushStrategy::Parabola:
+		return std::move(std::make_unique<Parabola>(Parabola()));
+		break;
+
 	case BrushStrategy::Pen:
 		return std::move(std::make_unique<Pen>(Pen()));
 		break;

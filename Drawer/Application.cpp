@@ -52,6 +52,12 @@ void Application::run()
 			canPress = false;
 		}
 
+		if (isPressed(buttonParabola))
+		{
+			actualBrush = factory.create(BrushFactory::BrushStrategy::Parabola);
+			canPress = false;
+		}
+
 		if (isPressed(buttonSave))
 		{
 			canvas.getSaveImage().saveToFile("image.png");
@@ -111,7 +117,7 @@ void Application::run()
 		window.draw(buttonThickPen.getSprite());
 		window.draw(buttonRubber.getSprite());
 		window.draw(buttonLine.getSprite());
-		window.draw(buttonParabla.getSprite());
+		window.draw(buttonParabola.getSprite());
 		window.draw(buttonSave.getSprite());
 		window.draw(buttonLoad.getSprite());
 		window.draw(buttonRedDye.getSprite());

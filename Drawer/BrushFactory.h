@@ -6,6 +6,7 @@
 
 #include "Brush.h"
 #include "Pen.h"
+#include "Parabola.h"
 #include "ThickPen.h"
 #include "Line.h"
 #include "Rubber.h"
@@ -19,7 +20,8 @@ public:
 		Pen,
 		ThickPen,
 		Rubber,
-		Line 
+		Line,
+		Parabola
 	};
 
 	std::unique_ptr<Brush> create(BrushStrategy) const;
