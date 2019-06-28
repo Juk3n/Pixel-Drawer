@@ -43,7 +43,7 @@ void Canvas::drawParabola(int x1, int y1, int x2, int y2, int parx, int pary, sf
 	sf::Vector2i B{ parx, pary };
 	sf::Vector2i C{ x2, y2 };
 
-	for (float t = 0; t <= 1; t += 0.02f)
+	for (float t = 0; t <= 1; t += 0.005f)
 	{
 		sf::Vector2i Q{ (int)((1 - t)*A.x + t * B.x), (int)((1 - t)*A.y + t * B.y) };
 		sf::Vector2i R{ (int)((1 - t)*B.x + t * C.x), (int)((1 - t)*B.y + t * C.y) };
