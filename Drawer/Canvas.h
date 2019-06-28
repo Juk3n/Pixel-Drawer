@@ -9,11 +9,9 @@ class Canvas
 	int canvasWidth{};
 	int canvasHeight{};
 
-	std::vector<sf::RectangleShape> Pixels{};
 	sf::Image image{};
-	int pixelSize{10};
-
-	void fillLine(int y, sf::Color startColor);
+	sf::Texture texture{};
+	sf::Sprite sprite{};
 	
 public:
 	Canvas(int width, int height, sf::Color startColor);
@@ -24,7 +22,6 @@ public:
 	void drawLine(int x1, int y1, int x2, int y2, sf::Color color);
 
 	sf::Image getSaveImage();
-
-	std::vector<sf::RectangleShape> getPixels();
+	sf::Sprite getSprite();
 };
 

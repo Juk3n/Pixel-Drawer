@@ -17,17 +17,15 @@ void Application::run()
 	{
 		mouse.refreshMouse(window);
 
-		sf::Vector2i pixelPosition{ mouse.getPosition() / 10 };
-
 		if (mouse.isLeftButtonClicked() && canPress && canvas.isMouseOnCanvas(mouse.getPosition()))
 		{
-			actualBrush->startDrawing(canvas, pixelPosition);
+			actualBrush->startDrawing(canvas, mouse.getPosition());
 			canPress = false;
 		}
 
 		if (mouse.isLeftButtonClicked() && mouse.isDragging() && canvas.isMouseOnCanvas(mouse.getPosition()))
 		{
-			actualBrush->dragDrawing(canvas, pixelPosition);
+			actualBrush->dragDrawing(canvas, mouse.getPosition());
 		}
 
 		if (isPressed(buttonPen))
@@ -88,7 +86,7 @@ void Application::run()
 			{
 				if (canvas.isMouseOnCanvas(mouse.getPosition()))
 				{
-					actualBrush->endDrawing(canvas, pixelPosition);
+					actualBrush->endDrawing(canvas, mouse.getPosition());
 				}
 				
 				canPress = true;
@@ -97,7 +95,7 @@ void Application::run()
 
 		window.clear();
 		
-		for (auto pixel : canvas.getPixels()) window.draw(pixel);
+		window.draw(canvas.getSprite());		
 		window.draw(buttonPen.getSprite());
 		window.draw(buttonThickPen.getSprite());
 		window.draw(buttonRubber.getSprite());
